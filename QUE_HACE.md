@@ -1,3 +1,3 @@
 # ¿Qué hace el sistema?
 
-> *En una frase. No qué gestiona: **qué hace**.*
+El proyecto orienta a los visitantes a navegar dentro de un campus universitario mostrándoles la ubicación de los espacios e indicándoles las rutas para llegar de un punto a otro.
