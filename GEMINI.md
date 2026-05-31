@@ -17,12 +17,11 @@ No introduces cambios, mejoras ni extensiones que no estén documentadas. Si alg
 
 `myUniverse` es una aplicación de navegación y exploración de espacios físicos. Antes de proponer cualquier artefacto, ten claro su modelo:
 
-- **Entidades principales**: `Espacio`, `Recorrido`, `EspacioRecorrido`
-- **Visitante** puede: buscar espacios, ver detalles, ver espacios cercanos y por planta, listar y seleccionar recorridos, cambiar de espacio
-- **Administrador** puede: crear, editar, eliminar y abrir espacios y recorridos
-
-Los ciclos de vida de `Espacio` y `EspacioRecorrido` están definidos en `RUP/00-requisitos/00-modeloDeDominio/DiagramaDeEstados/`. Consúltalos cuando trabajes con lógica de estado.
-
+- **Jerarquía espacial**: `Universidad` se compone de `Region` (campus, zonas o edificios), `Region` de `Planta` y `Planta` de `Espacio`. Cada `Espacio` tiene un `Tipo` (enumeración: aula, laboratorio, etc.)
+- **Recorridos**: `Recorrido` agrega múltiples `Espacio`. No existe entidad intermedia; la relación es directa.
+- **Visitante** interactúa con `Espacio` y sigue `Recorrido`. Puede: buscar espacios, ver detalles, ver espacios cercanos y por planta, listar y seleccionar recorridos, cambiar de espacio.
+- **Administrador** puede: crear, editar, eliminar y abrir espacios y recorridos.
+  Los ciclos de vida de `Espacio` están definidos en `RUP/00-requisitos/00-modeloDeDominio/DiagramaDeEstados/`. Consúltalos cuando trabajes con lógica de estado.
 ---
 
 ## 3. Protocolo de Inicio de Sesión (Lectura Obligatoria)
