@@ -4,6 +4,20 @@ left to right direction
 
 actor "Administrador" as admin
 
+package "Gestión de Regiones"{
+    usecase crearRegion as "crearRegion()"
+    usecase verRegiones as "verRegiones()"
+    usecase eliminarRegion as "eliminarRegion()"
+    usecase editarRegion as "editarRegion()"
+}
+
+package "Gestión de Plantas"{
+    usecase crearPlanta as "crearPlanta()"
+    usecase verPlantas as "verPlantas()"
+    usecase eliminarPlanta as "eliminarPlanta()"
+    usecase editarPlanta as "editarPlanta()"
+}
+
 package "Gestión de Espacios"{
     usecase crearEspacio as "crearEspacio()"
     usecase verEspacios as "verEspacios()"
@@ -17,6 +31,16 @@ package "Gestión de Recorridos"{
     usecase eliminarRecorrido as "eliminarRecorrido()"
     usecase editarRecorrido as "editarRecorrido()"
 }
+
+(crearRegion) <-- admin
+(verRegiones) <-- admin
+(eliminarRegion) <-- admin
+(editarRegion) <-- admin
+
+(crearPlanta) <-- admin
+(verPlantas) <-- admin
+(eliminarPlanta) <-- admin
+(editarPlanta) <-- admin
 
 (crearEspacio) <-- admin
 (verEspacios) <-- admin

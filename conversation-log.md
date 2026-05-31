@@ -41,3 +41,10 @@ estado actual del proyecto."
 - **Resultado**: El archivo `GEMINI.md` fue reescrito completamente con las reglas estrictas de identidad, trazabilidad cruzada, plantillas y uso del formato de tracking para el final de sesión.
 - **Enlace**: `GEMINI.md`
 - **Decisión**: Se asume el rol de Ingeniero Senior experto en RUP. Se bloquean todas las modificaciones al sistema hasta recibir la instrucción explícita "EJECUTA". Se determina el uso exclusivo del formato definido para volcar los logs.
+
+## [01/06/2026 01:48] Sesión 2 - Auditoría de Casos de Uso y Adición de CRUD Jerárquico
+
+- **Prompt**: Rectificar el estado actual de las clases, recordar el contexto e identificar si todas las entidades poseen los casos de uso correspondientes a un CRUD. Posteriormente, documentar la observación sobre las ausencias de gestión jerárquica y aplicar la resolución en los casos de uso.
+- **Resultado**: Se crearon el directorio `documents/01-observaciones-docente/` y el archivo `falta-crud-jerarquico.md`. Se actualizó el índice general en `documents/README.md`. Se modificó exitosamente `adminCasosDeUso.puml` añadiendo los paquetes de "Gestión de Regiones" y "Gestión de Plantas".
+- **Enlace**: `RUP/00-requisitos/01-casoDeUso/1-CasoDeUso/Administrador/adminCasosDeUso.puml`, `documents/01-observaciones-docente/falta-crud-jerarquico.md`, `documents/README.md`
+- **Decisión**: Integrar gestión CRUD para la cadena compositiva de dominios (`Region` y `Planta`) que garantice su escalabilidad desde la administración sin manipulación directa de BD. Se respetó estrictamente el bloqueo "EJECUTA" antes de aplicar modificaciones.
