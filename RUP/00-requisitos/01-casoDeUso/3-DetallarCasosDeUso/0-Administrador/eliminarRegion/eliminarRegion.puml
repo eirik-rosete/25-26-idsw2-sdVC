@@ -1,0 +1,50 @@
+@startuml eliminarRegion
+
+skinparam linetype polyline
+
+state in1 as "REGIONES_ABIERTO"
+in1 -[#green]-> eliminarRegion
+
+state eliminarRegion as "eliminarRegion()" {
+
+    state " " as ConfirmandoEliminacion
+    state " " as SeleccionandoModo
+    state " " as EliminandoRegion
+
+    [*] -[#green]-> ConfirmandoEliminacion 
+    note on link
+    <b>Administrador</b> solicita eliminar región
+    end note    
+    
+    ConfirmandoEliminacion -[#green]-> SeleccionandoModo
+    note on link
+    <b>Sistema</b> presenta información de la región a eliminar
+    • Presenta advertencia de eliminación
+    • Pregunta si desea eliminar en cascada (plantas hijas)
+      o dejar los elementos huérfanos
+    • Permite solicitar confirmar eliminación
+    • Permite solicitar cancelar eliminación
+    end note
+    
+    SeleccionandoModo -[#green]-> EliminandoRegion
+    note on link
+    <b>Administrador</b> elige modo de eliminación y confirma
+    end note
+    
+    EliminandoRegion -[#green]-> [*]
+    note on link
+    <b>Sistema</b> elimina región (y dependencias según elección)
+    end note
+}
+
+eliminarRegion -[#green]-> REGIONES_ABIERTO
+note on link
+abrirListaRegiones() - lista actualizada
+end note
+
+eliminarRegion -[#blue]-> REGIONES_ABIERTO
+note on link
+abrirListaRegiones() - cancelar eliminación
+end note
+
+@enduml

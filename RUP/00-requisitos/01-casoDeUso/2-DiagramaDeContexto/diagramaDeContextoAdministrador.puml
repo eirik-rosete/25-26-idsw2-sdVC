@@ -10,6 +10,10 @@ state "ESPACIOS_ABIERTO" as ListEspacios
 state "ESPACIO_ABIERTO" as EditEspacio
 state "RECORRIDOS_ABIERTO" as ListRecorridos
 state "RECORRIDO_ABIERTO" as EditRecorrido
+state "REGIONES_ABIERTO" as ListRegiones
+state "REGION_ABIERTO" as EditRegion
+state "PLANTAS_ABIERTO" as ListPlantas
+state "PLANTA_ABIERTO" as EditPlanta
 
 [*] --> NoAuth
 
@@ -18,6 +22,8 @@ NoAuth --> Menu : iniciarSesion()
 Menu --> NoAuth : cerrarSesion()
 Menu --> ListEspacios: abrirEspacios()
 Menu --> ListRecorridos: abrirRecorridos()
+Menu --> ListRegiones: abrirRegiones()
+Menu --> ListPlantas: abrirPlantas()
 
 
 ListEspacios --> EditEspacio: crearEspacio()
@@ -34,8 +40,24 @@ ListRecorridos --> ListRecorridos: eliminarRecorrido()
 EditRecorrido --> EditRecorrido: editarRecorrido()
 EditRecorrido --> ListRecorridos: abrirRecorridos()
 
+ListRegiones --> EditRegion: crearRegion()
+ListRegiones --> EditRegion: editarRegion()
+ListRegiones --> ListRegiones: eliminarRegion()
+
+EditRegion --> EditRegion: editarRegion()
+EditRegion --> ListRegiones: abrirRegiones()
+
+ListPlantas --> EditPlanta: crearPlanta()
+ListPlantas --> EditPlanta: editarPlanta()
+ListPlantas --> ListPlantas: eliminarPlanta()
+
+EditPlanta --> EditPlanta: editarPlanta()
+EditPlanta --> ListPlantas: abrirPlantas()
+
 
 ListEspacios --> Menu: completarGestion()
 ListRecorridos --> Menu: completarGestion()
+ListRegiones --> Menu: completarGestion()
+ListPlantas --> Menu: completarGestion()
 
 @enduml

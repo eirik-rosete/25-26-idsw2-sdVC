@@ -1,0 +1,43 @@
+@startuml crearRegion
+
+skinparam linetype polyline
+
+state in1 as "REGIONES_ABIERTO"
+in1 -[#green]-> crearRegion
+
+state crearRegion as "crearRegion()" {
+
+    state " " as SolicitandoDatos
+    state " " as CreandoRegion
+
+    [*] -[#green]-> SolicitandoDatos 
+    note on link
+    <b>Administrador</b> solicita crear región nueva
+    end note    
+    
+    SolicitandoDatos -[#green]-> CreandoRegion
+    note on link
+    <b>Sistema</b> presenta solicitud de datos mínimos de la región
+    • Nombre de la región (obligatorio)
+    • Permite solicitar crear región
+    • Permite solicitar cancelar creación
+    end note
+    
+    CreandoRegion -[#green]-> [*]
+    note on link
+    <b>Administrador</b> proporciona datos mínimos
+    <b>Sistema</b> crea región y transfiere a actualización
+    end note
+}
+
+crearRegion -[#green]-> REGION_ABIERTO
+note on link
+editarRegion(regionNueva)
+end note
+
+crearRegion -[#blue]-> REGIONES_ABIERTO
+note on link
+cancelar creación
+end note
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml eliminarPlanta
+
+skinparam linetype polyline
+
+state in1 as "PLANTAS_ABIERTO"
+in1 -[#green]-> eliminarPlanta
+
+state eliminarPlanta as "eliminarPlanta()" {
+
+    state " " as ConfirmandoEliminacion
+    state " " as SeleccionandoModo
+    state " " as EliminandoPlanta
+
+    [*] -[#green]-> ConfirmandoEliminacion 
+    note on link
+    <b>Administrador</b> solicita eliminar planta
+    end note    
+    
+    ConfirmandoEliminacion -[#green]-> SeleccionandoModo
+    note on link
+    <b>Sistema</b> presenta información de la planta a eliminar
+    • Presenta advertencia de eliminación
+    • Pregunta si desea eliminar en cascada (espacios hijos)
+      o dejar los elementos huérfanos
+    • Permite solicitar confirmar eliminación
+    • Permite solicitar cancelar eliminación
+    end note
+    
+    SeleccionandoModo -[#green]-> EliminandoPlanta
+    note on link
+    <b>Administrador</b> elige modo de eliminación y confirma
+    end note
+    
+    EliminandoPlanta -[#green]-> [*]
+    note on link
+    <b>Sistema</b> elimina planta (y dependencias según elección)
+    end note
+}
+
+eliminarPlanta -[#green]-> PLANTAS_ABIERTO
+note on link
+abrirListaPlantas() - lista actualizada
+end note
+
+eliminarPlanta -[#blue]-> PLANTAS_ABIERTO
+note on link
+abrirListaPlantas() - cancelar eliminación
+end note
+
+@enduml

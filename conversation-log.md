@@ -48,3 +48,10 @@ estado actual del proyecto."
 - **Resultado**: Se crearon el directorio `documents/01-observaciones-docente/` y el archivo `falta-crud-jerarquico.md`. Se actualizó el índice general en `documents/README.md`. Se modificó exitosamente `adminCasosDeUso.puml` añadiendo los paquetes de "Gestión de Regiones" y "Gestión de Plantas".
 - **Enlace**: `RUP/00-requisitos/01-casoDeUso/1-CasoDeUso/Administrador/adminCasosDeUso.puml`, `documents/01-observaciones-docente/falta-crud-jerarquico.md`, `documents/README.md`
 - **Decisión**: Integrar gestión CRUD para la cadena compositiva de dominios (`Region` y `Planta`) que garantice su escalabilidad desde la administración sin manipulación directa de BD. Se respetó estrictamente el bloqueo "EJECUTA" antes de aplicar modificaciones.
+
+## [02/06/2026 00:24] Detallado y Prototipado de CRUD para Región y Planta
+
+- **Prompt**: Implementar diagramas detallados y prototipos para los casos de uso faltantes de las entidades `Region` y `Planta` en el Administrador, actualizar el diagrama de contexto y redefinir la tabla de prioridades.
+- **Resultado**: Se actualizaron `diagramaDeContextoAdministrador.puml` y `2.1-PriorizarCasoDeUso/README.md`. Se generaron 8 diagramas `.puml` en `3-DetallarCasosDeUso` y 8 plantillas `.md` de prototipo en `4-Prototipo` para el CRUD completo de Regiones y Plantas. Todos los cambios son coherentes con `QUE_HACE.md`, preparando el sistema de administración base para sustentar la orientación del visitante.
+- **Enlace**: [Conversación](/conversations/) 
+- **Decisión**: 

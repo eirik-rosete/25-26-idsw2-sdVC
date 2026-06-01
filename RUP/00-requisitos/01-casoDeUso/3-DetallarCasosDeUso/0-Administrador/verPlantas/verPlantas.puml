@@ -1,0 +1,62 @@
+@startuml verPlantas
+
+skinparam linetype polyline
+
+state in1 as "UNIVERSIDAD_DISPONIBLE"
+in1 -[#green]-> verPlantas
+state in2 as "PLANTA_ABIERTO"
+in2 -[#green]-> verPlantas
+
+state verPlantas as "verPlantas()" {
+
+    state " " as MostrandoLista
+    state " " as FiltrandoLista
+
+    [*] -[#green]-> MostrandoLista 
+    note on link
+    <b>Administrador</b> solicita abrir plantas
+    end note    
+    
+    MostrandoLista -[#green]-> FiltrandoLista
+    note on link
+    <b>Sistema</b> presenta lista de plantas
+    • ID y nombre de cada planta
+    • Permite solicitar filtrar lista
+    • Permite solicitar crear planta nueva
+    • Permite solicitar eliminar planta
+    • Permite solicitar editar planta
+    end note
+    
+    FiltrandoLista -[#green]-> FiltrandoLista
+    note on link
+    <b>Administrador</b> solicita filtrar lista
+    <b>Sistema</b> presenta lista filtrada
+    end note
+    
+    FiltrandoLista -[#green]-> [*]
+    note on link
+    <b>Administrador</b> solicita una de las opciones
+    end note
+}
+
+verPlantas -[#green]-> PLANTA_ABIERTO
+note on link
+editarPlanta()
+end note
+
+verPlantas -[#green]-> PLANTA_ABIERTO
+note on link
+crearPlanta()
+end note
+
+verPlantas -[#green]-> PLANTAS_ABIERTO
+note on link
+eliminarPlanta()
+end note
+
+verPlantas -[#green]-> UNIVERSIDAD_DISPONIBLE
+note on link
+completarGestion()
+end note
+
+@enduml

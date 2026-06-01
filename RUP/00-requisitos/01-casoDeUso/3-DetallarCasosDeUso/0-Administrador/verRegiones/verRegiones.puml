@@ -1,0 +1,62 @@
+@startuml verRegiones
+
+skinparam linetype polyline
+
+state in1 as "UNIVERSIDAD_DISPONIBLE"
+in1 -[#green]-> verRegiones
+state in2 as "REGION_ABIERTO"
+in2 -[#green]-> verRegiones
+
+state verRegiones as "verRegiones()" {
+
+    state " " as MostrandoLista
+    state " " as FiltrandoLista
+
+    [*] -[#green]-> MostrandoLista 
+    note on link
+    <b>Administrador</b> solicita abrir regiones
+    end note    
+    
+    MostrandoLista -[#green]-> FiltrandoLista
+    note on link
+    <b>Sistema</b> presenta lista de regiones
+    • ID y nombre de cada región
+    • Permite solicitar filtrar lista
+    • Permite solicitar crear región nueva
+    • Permite solicitar eliminar región
+    • Permite solicitar editar región
+    end note
+    
+    FiltrandoLista -[#green]-> FiltrandoLista
+    note on link
+    <b>Administrador</b> solicita filtrar lista
+    <b>Sistema</b> presenta lista filtrada
+    end note
+    
+    FiltrandoLista -[#green]-> [*]
+    note on link
+    <b>Administrador</b> solicita una de las opciones
+    end note
+}
+
+verRegiones -[#green]-> REGION_ABIERTO
+note on link
+editarRegion()
+end note
+
+verRegiones -[#green]-> REGION_ABIERTO
+note on link
+crearRegion()
+end note
+
+verRegiones -[#green]-> REGIONES_ABIERTO
+note on link
+eliminarRegion()
+end note
+
+verRegiones -[#green]-> UNIVERSIDAD_DISPONIBLE
+note on link
+completarGestion()
+end note
+
+@enduml

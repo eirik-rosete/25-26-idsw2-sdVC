@@ -1,0 +1,58 @@
+@startuml editarRegion
+
+skinparam linetype polyline
+
+state in2 as "REGIONES_ABIERTO"
+in2 -[#green]-> editarRegion
+
+state editarRegion as "editarRegion()" {
+
+    state " " as EditandoDatos
+    state " " as GuardandoDatos 
+
+    [*] -[#green]-> EditandoDatos 
+    note on link
+    <b>Administrador</b> solicita editar región
+    end note    
+    
+    EditandoDatos -[#green]-> GuardandoDatos
+    note on link
+    <b>Sistema</b> presenta datos de edición
+    • Código, nombre de la región
+    • Plantas contenidas en la región (lectura)
+    • Descripción, ubicación geográfica
+    
+    <b>Sistema</b> permite solicitar:
+    • modificar campos
+    • guardar región
+    • cancelar edición
+    end note
+    
+    GuardandoDatos -[#green]-> EditandoDatos
+    note on link
+    <b>Administrador</b> solicita modificar campos
+    end note
+    
+    GuardandoDatos -[#green]-> [*]
+    note on link
+    <b>Administrador</b> solicita guardar y salir
+    end note
+
+    GuardandoDatos -[#red]-> [*]
+    note on link
+    <b>Administrador</b> solicita cancelar edición
+    end note
+
+}
+
+editarRegion -[#green]-> REGIONES_ABIERTO
+note on link
+abrirListaRegiones()
+end note
+
+editarRegion -[#red]-> REGIONES_ABIERTO
+note on link
+cancelar edición
+end note
+
+@enduml

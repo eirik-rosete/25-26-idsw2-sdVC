@@ -1,0 +1,31 @@
+<div align=right>
+
+| [![](https://img.shields.io/badge/-Inicio-FFF?style=flat&logo=Emlakjet&logoColor=black)](/README.md) [![](https://img.shields.io/badge/-commitlint-282c34?style=flat&logo=commitlint&logoColor=white)](/RUP/00-requisitos/commits/commit-instructions.md)  [![](https://img.shields.io/badge/-Modelo_de_Dominio-FFF?style=flat&logo=LiveChat&logoColor=black)](/RUP/00-requisitos/00-modeloDeDominio/README.md) [![](https://img.shields.io/badge/-Actores_&_Casos_De_Uso-FFF?style=flat&logo=openstreetmap&logoColor=black)](/RUP/00-requisitos/01-casoDeUso/0-Actores/README.md) [![](https://img.shields.io/badge/-Diagrama_De_Contexto-FFF?style=flat&logo=openstreetmap&logoColor=black)](/RUP/00-requisitos/01-casoDeUso/0-Actores/README.md) [![](https://img.shields.io/badge/-Detallar_&_Prototipar-FFF?style=flat&logo=openstreetmap&logoColor=black)](/RUP/00-requisitos/01-casoDeUso/0-Actores/README.md) [![](https://img.shields.io/badge/-Sesiones_de_Requisitado-FFF?style=flat&logo=Proton&logoColor=black)](/RUP/00-requisitos/03-sesiones/)
+|:-:|
+
+</div>
+
+# eliminarRegion() -> Detalle y prototipado
+
+## Diagrama de especificación
+
+<div align=center>
+
+|![Caso de uso: eliminarRegion()](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/eliminarRegion/eliminarRegion.svg)|
+|-|
+|Código fuente: [eliminarRegion.puml](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/eliminarRegion/eliminarRegion.puml)|
+
+</div>
+
+## Prototipo de interfaz
+
+### Wireframes
+
+#### Pantalla: eliminar región
+
+<div align=center>
+
+|![Wireframe: eliminar región](/RUP/00-requisitos/01-casoDeUso/4-Prototipo/0-Administrador/eliminarRegion/eliminarRegion.png)|
+|-|
+
+</div>

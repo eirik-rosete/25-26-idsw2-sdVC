@@ -1,0 +1,43 @@
+@startuml crearPlanta
+
+skinparam linetype polyline
+
+state in1 as "PLANTAS_ABIERTO"
+in1 -[#green]-> crearPlanta
+
+state crearPlanta as "crearPlanta()" {
+
+    state " " as SolicitandoDatos
+    state " " as CreandoPlanta
+
+    [*] -[#green]-> SolicitandoDatos 
+    note on link
+    <b>Administrador</b> solicita crear planta nueva
+    end note    
+    
+    SolicitandoDatos -[#green]-> CreandoPlanta
+    note on link
+    <b>Sistema</b> presenta solicitud de datos mínimos de la planta
+    • Nombre de la planta (obligatorio)
+    • Permite solicitar crear planta
+    • Permite solicitar cancelar creación
+    end note
+    
+    CreandoPlanta -[#green]-> [*]
+    note on link
+    <b>Administrador</b> proporciona datos mínimos
+    <b>Sistema</b> crea planta huérfana y transfiere a actualización
+    end note
+}
+
+crearPlanta -[#green]-> PLANTA_ABIERTO
+note on link
+editarPlanta(plantaNueva)
+end note
+
+crearPlanta -[#blue]-> PLANTAS_ABIERTO
+note on link
+cancelar creación
+end note
+
+@enduml
