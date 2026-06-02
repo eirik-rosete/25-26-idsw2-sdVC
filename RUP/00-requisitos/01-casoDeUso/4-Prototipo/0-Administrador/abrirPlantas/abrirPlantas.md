@@ -5,15 +5,15 @@
 
 </div>
 
-# verPlantas() -> Detalle y prototipado
+# abrirPlantas() -> Detalle y prototipado
 
 ## Diagrama de especificación
 
 <div align=center>
 
-|![Caso de uso: verPlantas()](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/verPlantas/verPlantas.svg)|
-|-|
-|Código fuente: [verPlantas.puml](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/verPlantas/verPlantas.puml)|
+| ![Caso de uso: abrirPlantas()](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/abrirPlantas/abrirPlantas.svg)      |
+|-----------------------------------------------------------------------------------------------------------------------------------------|
+| Código fuente: [abrirPlantas.puml](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/abrirPlantas/abrirPlantas.puml) |
 
 </div>
 
@@ -25,7 +25,7 @@
 
 <div align=center>
 
-|![Wireframe: ver plantas](/RUP/00-requisitos/01-casoDeUso/4-Prototipo/0-Administrador/verPlantas/verPlantas.png)|
-|-|
+| ![Wireframe: ver plantas](/RUP/00-requisitos/01-casoDeUso/4-Prototipo/0-Administrador/abrirPlantas/abrirPlantas.png) |
+|----------------------------------------------------------------------------------------------------------------------|
 
 </div>

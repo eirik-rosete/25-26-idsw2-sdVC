@@ -5,15 +5,15 @@
 
 </div>
 
-# verRegiones() -> Detalle y prototipado
+# abrirRegiones() -> Detalle y prototipado
 
 ## Diagrama de especificación
 
 <div align=center>
 
-|![Caso de uso: verRegiones()](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/verRegiones/verRegiones.svg)|
-|-|
-|Código fuente: [verRegiones.puml](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/verRegiones/verRegiones.puml)|
+| ![Caso de uso: abrirRegiones()](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/abrirRegiones/abrirRegiones.svg)      |
+|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Código fuente: [abrirRegiones.puml](/RUP/00-requisitos/01-casoDeUso/3-DetallarCasosDeUso/0-Administrador/abrirRegiones/abrirRegiones.puml) |
 
 </div>
 
@@ -25,7 +25,7 @@
 
 <div align=center>
 
-|![Wireframe: ver regiones](/RUP/00-requisitos/01-casoDeUso/4-Prototipo/0-Administrador/verRegiones/verRegiones.png)|
-|-|
+| ![Wireframe: ver regiones](/RUP/00-requisitos/01-casoDeUso/4-Prototipo/0-Administrador/abrirRegiones/abrirRegiones.png) |
+|-------------------------------------------------------------------------------------------------------------------------|
 
 </div>

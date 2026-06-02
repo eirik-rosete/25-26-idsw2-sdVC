@@ -1,30 +1,30 @@
-@startuml verPlantas
+@startuml abrirRegiones
 
 skinparam linetype polyline
 
 state in1 as "UNIVERSIDAD_DISPONIBLE"
-in1 -[#green]-> verPlantas
-state in2 as "PLANTA_ABIERTO"
-in2 -[#green]-> verPlantas
+in1 -[#green]-> abrirRegiones
+state in2 as "REGION_ABIERTO"
+in2 -[#green]-> abrirRegiones
 
-state verPlantas as "verPlantas()" {
+state abrirRegiones as "abrirRegiones()" {
 
     state " " as MostrandoLista
     state " " as FiltrandoLista
 
     [*] -[#green]-> MostrandoLista 
     note on link
-    <b>Administrador</b> solicita abrir plantas
+    <b>Administrador</b> solicita abrir regiones
     end note    
     
     MostrandoLista -[#green]-> FiltrandoLista
     note on link
-    <b>Sistema</b> presenta lista de plantas
-    • ID y nombre de cada planta
+    <b>Sistema</b> presenta lista de regiones
+    • ID y nombre de cada región
     • Permite solicitar filtrar lista
-    • Permite solicitar crear planta nueva
-    • Permite solicitar eliminar planta
-    • Permite solicitar editar planta
+    • Permite solicitar crear región nueva
+    • Permite solicitar eliminar región
+    • Permite solicitar editar región
     end note
     
     FiltrandoLista -[#green]-> FiltrandoLista
@@ -39,22 +39,22 @@ state verPlantas as "verPlantas()" {
     end note
 }
 
-verPlantas -[#green]-> PLANTA_ABIERTO
+abrirRegiones -[#green]-> REGION_ABIERTO
 note on link
-editarPlanta()
+editarRegion()
 end note
 
-verPlantas -[#green]-> PLANTA_ABIERTO
+abrirRegiones -[#green]-> REGION_ABIERTO
 note on link
-crearPlanta()
+crearRegion()
 end note
 
-verPlantas -[#green]-> PLANTAS_ABIERTO
+abrirRegiones -[#green]-> REGIONES_ABIERTO
 note on link
-eliminarPlanta()
+eliminarRegion()
 end note
 
-verPlantas -[#green]-> UNIVERSIDAD_DISPONIBLE
+abrirRegiones -[#green]-> UNIVERSIDAD_DISPONIBLE
 note on link
 completarGestion()
 end note
