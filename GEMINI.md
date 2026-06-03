@@ -148,7 +148,48 @@ Con AI disponible, el análisis genérico vale 0. Lo que se evalúa es la especi
 
 ---
 
-## 8. Idioma Vehicular y Estructura del Repositorio
+## 8. Calidad de Diseño: SOLID y Antipatrones
+
+El rigor RUP no se limita a producir los artefactos correctos en el orden correcto. Cada decisión de diseño que tomes debe evitar activamente los problemas que hacen el software viscoso (difícil de entender), rígido (difícil de cambiar), frágil (propenso a errores) e inmóvil (difícil de reutilizar).
+
+Aplica los principios SOLID como **vocabulario de diagnóstico**, no como dogma. Sirven para nombrar y argumentar problemas concretos del código propio; el análisis genérico vale cero.
+
+### Por fase RUP
+
+**Requisitos**
+- Cada caso de uso tiene una única razón para existir. Si un CU mezcla responsabilidades de actores distintos, es una violación de SRP en fase temprana — córtalo antes de que contamine el análisis.
+- Los diagramas de contexto deben reflejar dependencias reales, no dependencias convenientes. Un actor que solo necesita una fracción de la interfaz del sistema es una señal de ISP pendiente.
+
+**Análisis**
+- La separación Vista / Control / Entidad no es decorativa. Una clase de control que accede directamente a la base de datos, o una entidad que contiene lógica de presentación, rompe SRP y genera acoplamiento estructural desde el análisis.
+- Detecta clases de análisis "gordas" antes de que lleguen al diseño. Si una clase de control gestiona más de un caso de uso, o una entidad acumula responsabilidades de dominios distintos, señálalo.
+
+**Diseño**
+- Antes de construir cualquier jerarquía de herencia, verifica LSP: un subtipo solo es correcto si puede sustituir a su base sin cambiar el comportamiento observable del sistema. Una jerarquía que requiere `instanceof`, métodos vacíos o excepciones inesperadas en subtipos es una jerarquía rota — usa composición en su lugar.
+- Aplica OCP mediante abstracciones: el sistema debe poder extenderse sin modificar código existente. Si añadir un nuevo `Tipo` de espacio obliga a tocar clases ya estables, el diseño está cerrado al revés.
+- DIP: las capas de alto nivel no dependen de implementaciones concretas. Los repositorios dependen de interfaces; las interfaces no dependen de la infraestructura.
+
+**Desarrollo**
+- Ningún hardcode de lógica de dominio en capas de infraestructura.
+- Composición sobre herencia cuando el objetivo es reutilización de comportamiento, no especialización de contrato.
+- Aplica la Ley de Demeter: un objeto solo habla con sus colaboradores directos. Las cadenas largas de llamadas (`a.getB().getC().doSomething()`) son acoplamiento estructural disfrazado de conveniencia.
+
+### Antipatrones a detectar y reportar
+
+Si durante la sesión identificas cualquiera de los siguientes, avisa al usuario antes de continuar:
+
+| Antipatrón | Señal |
+|---|---|
+| Clase Dios | Una clase que sabe o hace demasiado |
+| Shotgun Surgery | Un cambio pequeño obliga a modificar muchos archivos |
+| Feature Envy | Un método usa más datos de otra clase que de la propia |
+| Inappropriate Intimacy | Dos clases se conocen mutuamente en exceso |
+| Herencia rota (LSP) | Un subtipo que sobreescribe para no hacer nada, o lanza excepciones inesperadas |
+| Expansión silenciosa | El AI implementó funcionalidad no recogida en `QUE_HACE.md` |
+
+---
+
+## 9. Idioma Vehicular y Estructura del Repositorio
 
 El uso del **ESPAÑOL** es obligatorio para todo el proyecto: documentación, commits, comentarios de código, artefactos RUP y comunicación en general.
 
