@@ -26,10 +26,12 @@ Los ciclos de vida de `Espacio` están definidos en `RUP/00-requisitos/00-modelo
 
 ---
 
-## 3. Protocolo de Inicio de Sesión (Lectura Obligatoria)
+## 3. Protocolo de Inicio de Sesión (Lectura y Auditoría Obligatoria)
 
-Cuando el usuario escriba **"empezamos"**, DEBES leer los siguientes archivos en orden antes de proponer o ejecutar cualquier cambio:
+Cuando el usuario escriba **"empezamos"** o **"iniciar"**, DEBES seguir este proceso de dos fases antes de proponer o ejecutar cualquier cambio:
 
+### Fase 1: Adquisición de Contexto Arquitectónico
+Lee los siguientes archivos en orden:
 1. `RUP/00-requisitos/00-modeloDeDominio/DiagramaDeClases/diagramaDeClases.puml` — Modelo de dominio
 2. `RUP/00-requisitos/01-casoDeUso/1-CasoDeUso/Administrador/adminCasosDeUso.puml` — CU del Administrador
 3. `RUP/00-requisitos/01-casoDeUso/1-CasoDeUso/Visitante/visitanteCasosDeUso.puml` — CU del Visitante
@@ -37,8 +39,11 @@ Cuando el usuario escriba **"empezamos"**, DEBES leer los siguientes archivos en
 5. `RUP/00-requisitos/01-casoDeUso/2-DiagramaDeContexto/diagramaDeContextoVisitante.puml` — Contexto del Visitante
 6. `RUP/00-requisitos/02-glosario/glosario.md` — Glosario del proyecto
 7. `conversation-log.md` — Solo el resumen de la última entrada
+8. `QUE_HACE.md` — Para mantener alineación con el propósito general del sistema
 
-El log marca el estado actual del proyecto. No empieces a trabajar sin leerlo.
+### Fase 2: Auditoría del Estado Físico
+El `conversation-log.md` te da la historia y las decisiones (el "por qué"), pero **NO es un inventario**. 
+Después de leer los archivos base, estás **OBLIGADO a ejecutar herramientas de exploración de directorios (ej. `list_dir`)** sobre las carpetas de la fase RUP en la que se está trabajando. Tienes que "mirar a tu alrededor" para comprobar físicamente qué artefactos ya existen en el sistema de archivos antes de asumir qué falta por construir.
 
 ---
 
@@ -58,13 +63,13 @@ Durante el transcurso de la sesión, debes adherirte a las siguientes reglas:
 
 ### Gestión de Assets
 
-Los artefactos se distribuyen en tres directorios que replican la misma jerarquía interna (`00-requisitos/`, `01-analisis/`, `02-diseño/`, `03-desarrollo/`):
+De manera pragmática, los artefactos se distribuyen colocalizados. Los archivos fuente (`.puml`) y sus respectivas imágenes generadas (`.svg`, `.png`) deben guardarse **junto** a sus documentos narrativos `.md` dentro de la misma jerarquía interna en `RUP/` (`00-requisitos/`, `01-analisis/`, `02-diseño/`, `03-desarrollo/`). Esto asegura cohesión y facilita la navegación. 
 
 | Directorio | Contenido |
 |---|---|
-| `RUP/` | Documentación narrativa y artefactos de texto |
-| `modelosUML/` | Fuentes `.puml` |
-| `images/` | Imágenes generadas (SVG, PNG) |
+| `RUP/` | Toda la documentación, código UML e imágenes agrupadas por contexto. |
+| `documents/` | Documentación narrativa general u observaciones. |
+| `src/` | Código fuente del sistema. |
 
 ---
 
@@ -73,15 +78,16 @@ Los artefactos se distribuyen en tres directorios que replican la misma jerarqu�
 Cuando el usuario declare el cierre de sesión con **"adios"**, **"terminamos"** o **"fin de sesión"**, vuelca tu tracking interno al archivo `conversation-log.md`.
 
 - **Modo Solo-Append**: Está **TERMINANTEMENTE PROHIBIDO** alterar, reescribir o eliminar entradas históricas del log. Solo se añade información al final del documento.
+- **Escala Óptima del Log (Separación de Responsabilidades)**: El log es una bitácora de **Hitos y Decisiones**, no un inventario de archivos.
 - **Formato Estricto de Registro**: Toda nueva entrada debe seguir exactamente esta estructura:
 
 ```markdown
 ## [DD/MM/YYYY HH:MM] Título de la Sesión
 
-- **Prompt**: Breve descripción de la petición o contexto de la sesión
-- **Resultado**: Resumen de los artefactos generados/modificados y los hitos logrados
+- **Prompt**: El objetivo general de la sesión (ej. "Detallar CRUD de Región"). No transcribas la petición literal palabra por palabra.
+- **Resultado**: El módulo afectado y el hito logrado general. No listes todos los archivos creados; el sistema de archivos ya guarda esa verdad. Si hubo divergencia con `QUE_HACE.md`, refléjalo aquí.
 - **Enlace**: [Conversación](/conversations/) ← el usuario completa el nombre del archivo
-- **Decisión**: ← dejar en blanco, el usuario lo completa manualmente
+- **Decisión**: La racionalidad arquitectónica. Justifica *por qué* se modeló o programó así (las reglas de negocio acordadas que no son evidentes leyendo el código).
 ```
 
 > ⚠️ El formato de la cabecera `## [DD/MM/YYYY HH:MM]` es obligatorio sin variaciones. Los scripts de generación de Timeline dependen de él.
@@ -92,12 +98,10 @@ Cuando el usuario declare el cierre de sesión con **"adios"**, **"terminamos"**
 
 ## 6. Fidelidad al QUE_HACE.md
 
-El archivo `QUE_HACE.md` define el alcance comprometido del sistema. Es una referencia viva que debes mantener en mente durante toda la sesión, no solo al inicio.
+El archivo `QUE_HACE.md` define el alcance comprometido del sistema. Es una referencia viva que debes mantener en mente durante toda la sesión.
 
-- **Lectura obligatoria en el arranque**: Añade `QUE_HACE.md` a tu lectura de inicio de sesión, después del `conversation-log.md`.
-- **Coherencia constante**: Cada artefacto que generes —código, análisis, diseño— debe ser coherente con lo descrito en `QUE_HACE.md`. Si detectas divergencia entre lo que se está construyendo y lo que el documento describe, avisa al usuario antes de continuar.
-- **Sin expansión silenciosa**: Está prohibido implementar funcionalidad que no esté recogida en `QUE_HACE.md` sin consultar primero. El AI tiende a construir lo obvio y dejar fuera lo específico del dominio; es tu responsabilidad detectar y corregir esa deriva.
-- **Al cerrar sesión**: Si durante la sesión se produjo distancia entre lo entregado y `QUE_HACE.md`, refléjalo explícitamente en el campo `Resultado` del log.
+- **Coherencia constante**: Cada artefacto que generes —código, análisis, diseño— debe ser coherente con lo descrito en `QUE_HACE.md`. Si detectas divergencia, avisa al usuario antes de continuar.
+- **Sin expansión silenciosa**: Está prohibido implementar funcionalidad que no esté recogida en `QUE_HACE.md` sin consultar primero.
 
 ---
 
