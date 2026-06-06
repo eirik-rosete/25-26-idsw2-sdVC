@@ -55,3 +55,10 @@ estado actual del proyecto."
 - **Resultado**: Se actualizaron `diagramaDeContextoAdministrador.puml` y `2.1-PriorizarCasoDeUso/README.md`. Se generaron 8 diagramas `.puml` en `3-DetallarCasosDeUso` y 8 plantillas `.md` de prototipo en `4-Prototipo` para el CRUD completo de Regiones y Plantas. Todos los cambios son coherentes con `QUE_HACE.md`, preparando el sistema de administración base para sustentar la orientación del visitante.
 - **Enlace**: [Conversación](/conversations/) 
 - **Decisión**: 
+
+## [06/06/2026 18:44] Auditoría, Refactor Normativo e Inicio de Análisis
+
+- **Prompt**: Auditar el estado real del proyecto, corregir las normas de exploración y gestión de assets en GEMINI.md.
+- **Resultado**: Se actualizó `GEMINI.md` para hacer obligatoria la auditoría física de directorios y adoptar la colocalización de assets.
+- **Enlace**: [Conversación](/conversations/) 
+- **Decisión**: Se optó por la colocalización pragmática de assets (texto, .puml, imágenes juntos) para favorecer la cohesión, invalidando la regla de usar `modelosUML/` e `images/`. Además, se reforzó el paradigma de que el log documenta justificaciones tácticas y no funciona como un inventario exhaustivo.
