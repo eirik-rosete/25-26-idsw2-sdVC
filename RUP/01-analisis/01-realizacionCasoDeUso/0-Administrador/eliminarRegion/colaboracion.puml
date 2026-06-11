@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EliminarRegionView" as view <<boundary>> #629EF9
+control "RegionesController" as controller <<control>> #b5bd68
+entity "RegionRepository" as repo <<entity>> #F2AC4E
+entity "Region" as model <<entity>> #F2AC4E
+
+state ":Regiones Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : eliminarRegion(id)
+view -> controller : solicitarEliminacion(id)
+controller -> repo : verificarDependencias(id)
+repo --> controller : ok
+controller --> view : pedirConfirmacion()
+view -> controller : confirmarEliminacion(id)
+controller -> repo : eliminar(id)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

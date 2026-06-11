@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EliminarPlantaView" as view <<boundary>> #629EF9
+control "PlantasController" as controller <<control>> #b5bd68
+entity "PlantaRepository" as repo <<entity>> #F2AC4E
+entity "Planta" as model <<entity>> #F2AC4E
+
+state ":Plantas Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : eliminarPlanta(id)
+view -> controller : solicitarEliminacion(id)
+controller -> repo : verificarDependencias(id)
+repo --> controller : ok
+controller --> view : pedirConfirmacion()
+view -> controller : confirmarEliminacion(id)
+controller -> repo : eliminar(id)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

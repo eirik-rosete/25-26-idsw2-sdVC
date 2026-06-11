@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EliminarRecorridoView" as view <<boundary>> #629EF9
+control "RecorridosController" as controller <<control>> #b5bd68
+entity "RecorridoRepository" as repo <<entity>> #F2AC4E
+entity "Recorrido" as model <<entity>> #F2AC4E
+
+state ":Recorridos Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : eliminarRecorrido(id)
+view -> controller : solicitarEliminacion(id)
+controller -> repo : verificarDependencias(id)
+repo --> controller : ok
+controller --> view : pedirConfirmacion()
+view -> controller : confirmarEliminacion(id)
+controller -> repo : eliminar(id)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

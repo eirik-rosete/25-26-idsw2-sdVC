@@ -1,0 +1,19 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "AbrirPlantasView" as view <<boundary>> #629EF9
+control "PlantasController" as controller <<control>> #b5bd68
+entity "PlantaRepository" as repo <<entity>> #F2AC4E
+entity "Planta" as model <<entity>> #F2AC4E
+
+state ":Plantas Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Menu Abierto" as menu <<collaboration>> #CDEBA5
+
+menu -> view : abrirPlantas()
+view -> controller : cargarPlantas()
+controller -> repo : obtenerPlantas() : List<Planta>
+repo --> controller : lista
+controller --> view : render()
+view -> state1 : <<include>>
+@enduml

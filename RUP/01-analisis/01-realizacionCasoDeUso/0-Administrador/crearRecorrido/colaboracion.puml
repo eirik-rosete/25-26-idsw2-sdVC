@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "CrearRecorridoView" as view <<boundary>> #629EF9
+control "RecorridosController" as controller <<control>> #b5bd68
+entity "RecorridoRepository" as repo <<entity>> #F2AC4E
+entity "Recorrido" as model <<entity>> #F2AC4E
+
+state ":Recorridos Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Collaboration EditarRecorrido" as edit <<collaboration>> #CDEBA5
+
+state1 -> view : crearRecorrido()
+view -> controller : iniciarCreacion()
+view -> controller : crearRecorrido(datosMinimos)
+controller -> repo : crear(datosMinimos) : Recorrido
+repo -> model : <<create>>
+repo --> controller : nuevoRecorrido
+controller --> view : ok
+view -> edit : <<include>> editarRecorrido(nuevoRecorrido)
+@enduml

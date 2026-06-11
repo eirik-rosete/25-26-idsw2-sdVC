@@ -1,0 +1,22 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EditarRecorridoView" as view <<boundary>> #629EF9
+control "RecorridosController" as controller <<control>> #b5bd68
+entity "RecorridoRepository" as repo <<entity>> #F2AC4E
+entity "Recorrido" as model <<entity>> #F2AC4E
+
+state ":Recorridos Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : editarRecorrido(id)
+view -> controller : cargarDatos(id)
+controller -> repo : obtenerPorId(id) : Recorrido
+repo --> controller : recorrido
+controller --> view : render()
+view -> controller : guardarCambios(datos)
+controller -> model : actualizar(datos)
+controller -> repo : guardar(recorrido)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

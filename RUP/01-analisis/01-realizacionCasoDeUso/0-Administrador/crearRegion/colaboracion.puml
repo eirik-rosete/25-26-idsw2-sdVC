@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "CrearRegionView" as view <<boundary>> #629EF9
+control "RegionesController" as controller <<control>> #b5bd68
+entity "RegionRepository" as repo <<entity>> #F2AC4E
+entity "Region" as model <<entity>> #F2AC4E
+
+state ":Regiones Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Collaboration EditarRegion" as edit <<collaboration>> #CDEBA5
+
+state1 -> view : crearRegion()
+view -> controller : iniciarCreacion()
+view -> controller : crearRegion(datosMinimos)
+controller -> repo : crear(datosMinimos) : Region
+repo -> model : <<create>>
+repo --> controller : nuevoRegion
+controller --> view : ok
+view -> edit : <<include>> editarRegion(nuevoRegion)
+@enduml

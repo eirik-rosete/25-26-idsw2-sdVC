@@ -1,0 +1,19 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "AbrirEspaciosView" as view <<boundary>> #629EF9
+control "EspaciosController" as controller <<control>> #b5bd68
+entity "EspacioRepository" as repo <<entity>> #F2AC4E
+entity "Espacio" as model <<entity>> #F2AC4E
+
+state ":Espacios Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Menu Abierto" as menu <<collaboration>> #CDEBA5
+
+menu -> view : abrirEspacios()
+view -> controller : cargarEspacios()
+controller -> repo : obtenerEspacios() : List<Espacio>
+repo --> controller : lista
+controller --> view : render()
+view -> state1 : <<include>>
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EditarEspacioView" as view <<boundary>> #629EF9
+control "EspaciosController" as controller <<control>> #b5bd68
+entity "EspacioRepository" as repo <<entity>> #F2AC4E
+entity "Espacio" as model <<entity>> #F2AC4E
+
+state ":Espacios Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : editarEspacio(id)
+view -> controller : cargarDatos(id)
+controller -> repo : obtenerPorId(id) : Espacio
+repo --> controller : espacio
+controller --> view : render()
+view -> controller : guardarCambios(datos)
+controller -> model : actualizar(datos)
+controller -> repo : guardar(espacio)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

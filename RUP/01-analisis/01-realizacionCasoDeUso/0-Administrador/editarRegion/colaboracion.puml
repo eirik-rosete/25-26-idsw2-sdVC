@@ -1,0 +1,22 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "EditarRegionView" as view <<boundary>> #629EF9
+control "RegionesController" as controller <<control>> #b5bd68
+entity "RegionRepository" as repo <<entity>> #F2AC4E
+entity "Region" as model <<entity>> #F2AC4E
+
+state ":Regiones Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : editarRegion(id)
+view -> controller : cargarDatos(id)
+controller -> repo : obtenerPorId(id) : Region
+repo --> controller : region
+controller --> view : render()
+view -> controller : guardarCambios(datos)
+controller -> model : actualizar(datos)
+controller -> repo : guardar(region)
+controller --> view : ok
+view -> state1 : <<include>>
+@enduml

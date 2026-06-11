@@ -1,0 +1,19 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "AbrirRegionesView" as view <<boundary>> #629EF9
+control "RegionesController" as controller <<control>> #b5bd68
+entity "RegionRepository" as repo <<entity>> #F2AC4E
+entity "Region" as model <<entity>> #F2AC4E
+
+state ":Regiones Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Menu Abierto" as menu <<collaboration>> #CDEBA5
+
+menu -> view : abrirRegiones()
+view -> controller : cargarRegiones()
+controller -> repo : obtenerRegiones() : List<Region>
+repo --> controller : lista
+controller --> view : render()
+view -> state1 : <<include>>
+@enduml

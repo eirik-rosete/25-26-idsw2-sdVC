@@ -1,0 +1,21 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "CrearPlantaView" as view <<boundary>> #629EF9
+control "PlantasController" as controller <<control>> #b5bd68
+entity "PlantaRepository" as repo <<entity>> #F2AC4E
+entity "Planta" as model <<entity>> #F2AC4E
+
+state ":Plantas Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Collaboration EditarPlanta" as edit <<collaboration>> #CDEBA5
+
+state1 -> view : crearPlanta()
+view -> controller : iniciarCreacion()
+view -> controller : crearPlanta(datosMinimos)
+controller -> repo : crear(datosMinimos) : Planta
+repo -> model : <<create>>
+repo --> controller : nuevoPlanta
+controller --> view : ok
+view -> edit : <<include>> editarPlanta(nuevoPlanta)
+@enduml

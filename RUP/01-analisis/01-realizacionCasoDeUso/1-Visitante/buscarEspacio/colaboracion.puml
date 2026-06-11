@@ -1,0 +1,19 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "BuscarEspacioView" as view <<boundary>> #629EF9
+control "NavegacionController" as controller <<control>> #b5bd68
+entity "EspacioRepository" as repo <<entity>> #F2AC4E
+entity "Espacio" as model <<entity>> #F2AC4E
+
+state ":Recorrido Abierto" as state1 <<collaboration>> #CDEBA5
+
+state1 -> view : buscarEspacio()
+view -> controller : procesarBuscarEspacio()
+controller -> repo : consultarDatos()
+repo --> controller : datos
+controller --> view : render()
+view -> state1 : <<include>>
+
+@enduml

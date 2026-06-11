@@ -1,0 +1,19 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+
+boundary "AbrirRecorridosView" as view <<boundary>> #629EF9
+control "RecorridosController" as controller <<control>> #b5bd68
+entity "RecorridoRepository" as repo <<entity>> #F2AC4E
+entity "Recorrido" as model <<entity>> #F2AC4E
+
+state ":Recorridos Abierto" as state1 <<collaboration>> #CDEBA5
+state ":Menu Abierto" as menu <<collaboration>> #CDEBA5
+
+menu -> view : abrirRecorridos()
+view -> controller : cargarRecorridos()
+controller -> repo : obtenerRecorridos() : List<Recorrido>
+repo --> controller : lista
+controller --> view : render()
+view -> state1 : <<include>>
+@enduml
